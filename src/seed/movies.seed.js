@@ -1,9 +1,8 @@
 const mongoose = require('mongoose');
-
+const dotenv = require('dotenv');
 dotenv.config();
-
 const MoviesI = require('../api/models/movies.model');
-
+const DB_URL = process.env.DB_URL;
 
 const movies = [
     {
@@ -46,7 +45,7 @@ const movies = [
 
   mongoose.set("strictQuery", false);
 
-  mongoose.connect('mongodb+srv://amg:root@cluster0.umzreb4.mongodb.net/moviesI?retryWrites=true&w=majority',{
+  mongoose.connect(DB_URL,{
     useNewUrlParser: true,
     useUnifiedTopology: true,
   }).then(async () => {
